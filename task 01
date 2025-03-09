@@ -1,0 +1,14 @@
+import pandas as pd
+import altair as alt
+file_path = r"C:\Users\pushk\Downloads\gender_classification_v7.csv"  
+df = pd.read_csv(file_path)
+print(df['gender'].value_counts())
+gender_chart = alt.Chart(df).mark_bar().encode(
+    x=alt.X('gender:N', title='Gender'),
+    y=alt.Y('count()', title='Count'),
+    tooltip=['gender', 'count()']
+).properties(
+    title='Distribution of Gender'
+).interactive()
+gender_chart.save('gender_distribution_v7.json')
+print(gender_chart)
